@@ -1,0 +1,29 @@
+{
+  "name": "jquery-resource",
+  "version": "0.1.2",
+  "description": "Provides a base class to handle REST resources for jQuery.ajax",
+  "main": "dist/jquery.resource.js",
+  "files": [
+    "dist/jquery.resource.js",
+    "dist/jquery.resource.min.js"
+  ],
+  "license": "MIT",
+  "author": "Nick Lai <resxc13579@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/nick-lai/jquery-resource.git"
+  },
+  "bugs": {
+    "url": "https://github.com/nick-lai/jquery-resource/issues"
+  },
+  "homepage": "https://github.com/nick-lai/jquery-resource#readme",
+  "peerDependencies": {
+    "jquery": "^1.6 || ^2.0 || ^3.0"
+  },
+  "keywords": [
+    "jquery",
+    "ajax",
+    "xhr",
+    "resource"
+  ]
+}
