@@ -15,9 +15,10 @@
   };
 
   var Resource = function (options) {
-    this instanceof Resource
-      ? this.init(options)
-      : console.error('[Resource] Resource is a constructor and should be called with the `new` keyword');
+    if (!(this instanceof Resource)) {
+      return new Resource(options);
+    }
+    this.init(options);
   };
 
   var DEFAULTS = {
@@ -63,7 +64,7 @@
     /**
      * Send an asynchronous HTTP POST (Ajax) request.
      *
-     * @param {object} data A resource.
+     * @param {object|string|FormData} data A resource.
      * @param {object} ajaxSettings Ajax settings.
      * @returns {jqXHR} The jQuery XMLHttpRequest (jqXHR) object.
      */
@@ -79,7 +80,7 @@
     /**
      * Alias of `this.post()` method.
      *
-     * @param {object} data A resource.
+     * @param {object|string|FormData} data A resource.
      * @param {object} ajaxSettings Ajax settings.
      * @returns {jqXHR} The jQuery XMLHttpRequest (jqXHR) object.
      */
@@ -90,7 +91,7 @@
     /**
      * Alias of `this.post()` method.
      *
-     * @param {object} data A resource.
+     * @param {object|string|FormData} data A resource.
      * @param {object} ajaxSettings Ajax settings.
      * @returns {jqXHR} The jQuery XMLHttpRequest (jqXHR) object.
      */
@@ -102,7 +103,7 @@
      * Send an asynchronous HTTP PATCH (Ajax) request.
      *
      * @param {string} id Resource ID.
-     * @param {object} data A resource.
+     * @param {object|string|FormData} data A resource.
      * @param {object} ajaxSettings Ajax settings.
      * @returns {jqXHR} The jQuery XMLHttpRequest (jqXHR) object.
      */
@@ -119,7 +120,7 @@
      * Alias of `this.patch()` method.
      *
      * @param {string} id Resource ID.
-     * @param {object} data A resource.
+     * @param {object|string|FormData} data A resource.
      * @param {object} ajaxSettings Ajax settings.
      * @returns {jqXHR} The jQuery XMLHttpRequest (jqXHR) object.
      */
@@ -131,7 +132,7 @@
      * Send an asynchronous HTTP PUT (Ajax) request.
      *
      * @param {string} id Resource ID.
-     * @param {object} data A resource.
+     * @param {object|string|FormData} data A resource.
      * @param {object} ajaxSettings Ajax settings.
      * @returns {jqXHR} The jQuery XMLHttpRequest (jqXHR) object.
      */
@@ -148,7 +149,7 @@
      * Alias of `this.put()` method.
      *
      * @param {string} id Resource ID.
-     * @param {object} data A resource.
+     * @param {object|string|FormData} data A resource.
      * @param {object} ajaxSettings Ajax settings.
      * @returns {jqXHR} The jQuery XMLHttpRequest (jqXHR) object.
      */
