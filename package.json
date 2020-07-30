@@ -24,6 +24,8 @@
     "jquery",
     "ajax",
     "xhr",
+    "rest",
+    "api",
     "resource"
   ]
 }
