@@ -140,7 +140,7 @@
       var settings = {
         method: 'PUT',
         url: this.endpoint + '/' + id,
-        data: data || {}
+        data: data
       };
       return $.ajax(utils.deepMerge(this.ajaxSettings, ajaxSettings, settings));
     },
