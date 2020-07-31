@@ -17,8 +17,14 @@
     "url": "https://github.com/nick-lai/jquery-resource/issues"
   },
   "homepage": "https://github.com/nick-lai/jquery-resource#readme",
+  "devDependencies": {
+    "jest": "^26.2.1"
+  },
   "peerDependencies": {
     "jquery": "^1.6 || ^2.0 || ^3.0"
+  },
+  "scripts": {
+    "test": "jest"
   },
   "keywords": [
     "jquery",
