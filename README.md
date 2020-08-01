@@ -27,7 +27,7 @@ Provides a base class to handle REST resources for jQuery.ajax
 ### CDN
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/jquery-resource@1.0.0-beta.1/dist/jquery.resource.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-resource@1.0.0-beta.2/dist/jquery.resource.min.js"></script>
 ```
 
 ## Usage
