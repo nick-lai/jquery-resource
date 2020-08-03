@@ -21,8 +21,8 @@ jobs:
     - name: Upload Coverage report to CodeCov
       uses: codecov/codecov-action@v1
       with:
-        file: ./coverage/clover.xml
         flags: unittest
+        directory: ./coverage
         fail_ci_if_error: true
       env:
         CI: true
