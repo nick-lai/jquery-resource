@@ -18,5 +18,11 @@ jobs:
     # install peer dependencies
     - run: npm install jquery --no-save
     - run: npm test
+    - name: Upload Coverage report to CodeCov
+      uses: codecov/codecov-action@v1
+      with:
+        file: ./coverage/clover.xml
+        flags: unittest
+        fail_ci_if_error: true
       env:
         CI: true
