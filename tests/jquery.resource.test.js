@@ -8,13 +8,13 @@ describe('calls into $.ajax with the correct params', () => {
     jest.resetAllMocks();
   });
 
-  it('get', () => {
+  test('get', () => {
     const ajaxSpy = jest.spyOn($, 'ajax');
     const userResource = new $.resource({
       endpoint: 'https://reqres.in/api/users'
     });
 
-    userResource.get(1).done(() => {});
+    userResource.get(1).done();
 
     expect(ajaxSpy).toBeCalledWith({
       method: 'GET',
@@ -22,7 +22,7 @@ describe('calls into $.ajax with the correct params', () => {
     });
   });
 
-  it('find', () => {
+  test('find', () => {
     const ajaxSpy = jest.spyOn($, 'ajax');
     const userResource = new $.resource({
       endpoint: 'https://reqres.in/api/users'
@@ -41,7 +41,7 @@ describe('calls into $.ajax with the correct params', () => {
     });
   });
 
-  it('post', () => {
+  test('post', () => {
     const ajaxSpy = jest.spyOn($, 'ajax');
     const userResource = new $.resource({
       endpoint: 'https://reqres.in/api/users'
@@ -64,7 +64,7 @@ describe('calls into $.ajax with the correct params', () => {
     });
   });
 
-  it('add', () => {
+  test('add', () => {
     const ajaxSpy = jest.spyOn($, 'ajax');
     const userResource = new $.resource({
       endpoint: 'https://reqres.in/api/users'
@@ -87,7 +87,7 @@ describe('calls into $.ajax with the correct params', () => {
     });
   });
 
-  it('create', () => {
+  test('create', () => {
     const ajaxSpy = jest.spyOn($, 'ajax');
     const userResource = new $.resource({
       endpoint: 'https://reqres.in/api/users'
@@ -110,7 +110,7 @@ describe('calls into $.ajax with the correct params', () => {
     });
   });
 
-  it('patch', () => {
+  test('patch', () => {
     const ajaxSpy = jest.spyOn($, 'ajax');
     const userResource = new $.resource({
       endpoint: 'https://reqres.in/api/users'
@@ -133,7 +133,7 @@ describe('calls into $.ajax with the correct params', () => {
     });
   });
 
-  it('update', () => {
+  test('update', () => {
     const ajaxSpy = jest.spyOn($, 'ajax');
     const userResource = new $.resource({
       endpoint: 'https://reqres.in/api/users'
@@ -156,7 +156,7 @@ describe('calls into $.ajax with the correct params', () => {
     });
   });
 
-  it('put', () => {
+  test('put', () => {
     const ajaxSpy = jest.spyOn($, 'ajax');
     const userResource = new $.resource({
       endpoint: 'https://reqres.in/api/users'
@@ -179,7 +179,7 @@ describe('calls into $.ajax with the correct params', () => {
     });
   });
 
-  it('replace', () => {
+  test('replace', () => {
     const ajaxSpy = jest.spyOn($, 'ajax');
     const userResource = new $.resource({
       endpoint: 'https://reqres.in/api/users'
@@ -202,7 +202,7 @@ describe('calls into $.ajax with the correct params', () => {
     });
   });
 
-  it('delete', () => {
+  test('delete', () => {
     const ajaxSpy = jest.spyOn($, 'ajax');
     const userResource = $.resource({
       endpoint: 'https://reqres.in/api/users'
@@ -216,7 +216,7 @@ describe('calls into $.ajax with the correct params', () => {
     });
   });
 
-  it('delete all', () => {
+  test('delete all', () => {
     const ajaxSpy = jest.spyOn($, 'ajax');
     const userResource = $.resource({
       endpoint: 'https://reqres.in/api/users'
