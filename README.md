@@ -1,6 +1,13 @@
 jQuery Resource
 ===
 
+[![workflows/nodejs.yml](https://github.com/nick-lai/jquery-resource/workflows/Node.js%20CI/badge.svg)](https://github.com/nick-lai/jquery-resource/actions)
+[![codecov](https://codecov.io/gh/nick-lai/jquery-resource/branch/master/graph/badge.svg)](https://codecov.io/gh/nick-lai/jquery-resource)
+[![Known Vulnerabilities](https://snyk.io/test/npm/jquery-resource/1.0.0-rc.1/badge.svg)](https://snyk.io/test/npm/jquery-resource/1.0.0-rc.1)
+[![npm](https://img.shields.io/npm/v/jquery-resource)](https://www.npmjs.com/package/jquery-resource)
+[![npm hits](https://img.shields.io/npm/dm/jquery-resource)](https://npmcharts.com/compare/jquery-resource?minimal=true)
+[![GitHub](https://img.shields.io/github/license/nick-lai/jquery-resource)](./LICENSE)
+
 Provides a base class to handle REST resources for jQuery.ajax
 
 ## Table of Contents
