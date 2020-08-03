@@ -10,8 +10,7 @@
 }(function ($) {
   var utils = {
     deepMerge: function () {
-      var args = arguments.length === 1 ? [arguments[0]] : Array.apply(null, arguments);
-      return $.extend.apply(null, [true, {}].concat(args));
+      return $.extend.apply(null, [true, {}].concat($.makeArray(arguments)));
     }
   };
 
