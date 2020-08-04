@@ -14,7 +14,7 @@ describe('calls into $.ajax with the correct params', () => {
       endpoint: 'https://reqres.in/api/users'
     });
 
-    userResource.get(1).done();
+    userResource.get(1);
 
     expect(ajaxSpy).toBeCalledWith({
       method: 'GET',
