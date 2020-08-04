@@ -8,12 +8,6 @@
     factory(jQuery);
   }
 }(function ($) {
-  var utils = {
-    deepMerge: function () {
-      return $.extend.apply(null, [true, {}].concat($.makeArray(arguments)));
-    }
-  };
-
   var Resource = function (options) {
     if (!(this instanceof Resource)) {
       return new Resource(options);
@@ -26,9 +20,13 @@
     ajaxSettings: {}
   };
 
+  var deepMerge = function () {
+    return $.extend.apply(null, [true, {}].concat($.makeArray(arguments)));
+  };
+
   $.extend(Resource.prototype, {
     init: function (options) {
-      this.options = utils.deepMerge(DEFAULTS, options);
+      this.options = deepMerge(DEFAULTS, options);
       this.endpoint = this.options.endpoint;
       this.ajaxSettings = this.options.ajaxSettings;
     },
@@ -47,7 +45,7 @@
         url: this.endpoint + (id ? '/' + id : ''),
         data: params
       };
-      return $.ajax(utils.deepMerge(this.ajaxSettings, ajaxSettings, settings));
+      return $.ajax(deepMerge(this.ajaxSettings, ajaxSettings, settings));
     },
 
     /**
@@ -74,7 +72,7 @@
         url: this.endpoint,
         data: data
       };
-      return $.ajax(utils.deepMerge(this.ajaxSettings, ajaxSettings, settings));
+      return $.ajax(deepMerge(this.ajaxSettings, ajaxSettings, settings));
     },
 
     /**
@@ -113,7 +111,7 @@
         url: this.endpoint + '/' + id,
         data: data
       };
-      return $.ajax(utils.deepMerge(this.ajaxSettings, ajaxSettings, settings));
+      return $.ajax(deepMerge(this.ajaxSettings, ajaxSettings, settings));
     },
 
     /**
@@ -142,7 +140,7 @@
         url: this.endpoint + '/' + id,
         data: data
       };
-      return $.ajax(utils.deepMerge(this.ajaxSettings, ajaxSettings, settings));
+      return $.ajax(deepMerge(this.ajaxSettings, ajaxSettings, settings));
     },
 
     /**
@@ -171,7 +169,7 @@
         url: this.endpoint + (id ? '/' + id : ''),
         data: params
       };
-      return $.ajax(utils.deepMerge(this.ajaxSettings, ajaxSettings, settings));
+      return $.ajax(deepMerge(this.ajaxSettings, ajaxSettings, settings));
     }
   });
 
