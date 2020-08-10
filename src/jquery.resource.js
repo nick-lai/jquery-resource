@@ -8,6 +8,8 @@
     factory(jQuery);
   }
 }(function ($) {
+  'use strict';
+
   var Resource = function (options) {
     if (!(this instanceof Resource)) {
       return new Resource(options);
