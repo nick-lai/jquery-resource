@@ -40,7 +40,7 @@ Provides a base class to handle REST resources for jQuery.ajax
 ## Usage
 
 ```javascript
-var userResource = new $.resource({
+var userResource = $.resource({
   endpoint: 'https://reqres.in/api/users'
 });
 
@@ -68,7 +68,7 @@ userResource.delete(1);
 ### post()
 
 ```javascript
-var userResource = new $.resource({
+var userResource = $.resource({
   endpoint: 'https://reqres.in/api/users'
 });
 
@@ -87,7 +87,7 @@ userResource.post({
 Alias of `post()` method.
 
 ```javascript
-var userResource = new $.resource({
+var userResource = $.resource({
   endpoint: 'https://reqres.in/api/users'
 });
 
@@ -106,7 +106,7 @@ userResource.add({
 Alias of `post()` method.
 
 ```javascript
-var userResource = new $.resource({
+var userResource = $.resource({
   endpoint: 'https://reqres.in/api/users'
 });
 
@@ -123,7 +123,7 @@ userResource.create({
 ### get()
 
 ```javascript
-var userResource = new $.resource({
+var userResource = $.resource({
   endpoint: 'https://reqres.in/api/users'
 });
 
@@ -136,7 +136,7 @@ userResource.get(1).done(function () {
 ### find()
 
 ```javascript
-var userResource = new $.resource({
+var userResource = $.resource({
   endpoint: 'https://reqres.in/api/users'
 });
 
@@ -151,7 +151,7 @@ userResource.find({
 ### patch()
 
 ```javascript
-var userResource = new $.resource({
+var userResource = $.resource({
   endpoint: 'https://reqres.in/api/users'
 });
 
@@ -170,7 +170,7 @@ userResource.patch(1, {
 Alias of `patch()` method.
 
 ```javascript
-var userResource = new $.resource({
+var userResource = $.resource({
   endpoint: 'https://reqres.in/api/users'
 });
 
@@ -187,7 +187,7 @@ userResource.update(1, {
 ### put()
 
 ```javascript
-var userResource = new $.resource({
+var userResource = $.resource({
   endpoint: 'https://reqres.in/api/users'
 });
 
@@ -206,7 +206,7 @@ userResource.put(1, {
 Alias of `put()` method.
 
 ```javascript
-var userResource = new $.resource({
+var userResource = $.resource({
   endpoint: 'https://reqres.in/api/users'
 });
 
@@ -223,7 +223,7 @@ userResource.replace(1, {
 ### delete()
 
 ```javascript
-var userResource = new $.resource({
+var userResource = $.resource({
   endpoint: 'https://reqres.in/api/users'
 });
 
