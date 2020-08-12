@@ -2,10 +2,9 @@ jQuery Resource
 ===
 
 [![workflows/nodejs.yml](https://github.com/nick-lai/jquery-resource/workflows/Node.js%20CI/badge.svg)](https://github.com/nick-lai/jquery-resource/actions)
-[![codecov](https://codecov.io/gh/nick-lai/jquery-resource/branch/master/graph/badge.svg)](https://codecov.io/gh/nick-lai/jquery-resource)
-[![Known Vulnerabilities](https://snyk.io/test/npm/jquery-resource/badge.svg)](https://snyk.io/test/npm/jquery-resource)
+[![Codecov](https://img.shields.io/codecov/c/github/nick-lai/jquery-resource?label=codecov&logo=codecov)](https://codecov.io/gh/nick-lai/jquery-resource)
+[![jsDelivr hits (npm)](https://img.shields.io/jsdelivr/npm/hm/jquery-resource?label=jsDelivr&logo=jsdelivr)](https://www.jsdelivr.com/package/npm/jquery-resource)
 [![npm](https://img.shields.io/npm/v/jquery-resource)](https://www.npmjs.com/package/jquery-resource)
-[![npm hits](https://img.shields.io/npm/dm/jquery-resource)](https://npmcharts.com/compare/jquery-resource?minimal=true)
 [![GitHub](https://img.shields.io/github/license/nick-lai/jquery-resource)](./LICENSE)
 
 Provides a base class to handle REST resources for jQuery.ajax
