@@ -28,6 +28,8 @@
   },
   "keywords": [
     "jquery",
+    "jquery-plugin",
+    "ecosystem:jquery",
     "ajax",
     "xhr",
     "rest",
