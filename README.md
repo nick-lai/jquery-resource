@@ -33,7 +33,7 @@ Provides a base class to handle REST resources for jQuery.ajax
 ### CDN
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/jquery-resource@1.0.0-rc.3/dist/jquery.resource.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-resource@1.0.0-rc.4/dist/jquery.resource.min.js"></script>
 ```
 
 ## Usage
