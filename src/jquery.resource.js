@@ -26,6 +26,23 @@
     return $.extend.apply(null, [true, {}].concat($.makeArray(arguments)));
   };
 
+  /**
+   * Ajax (private method for Resource)
+   *
+   * @param {string} method The HTTP method to use for the request.
+   * @param {string} id Resource ID.
+   * @param {object|string|FormData} data A resource.
+   * @param {object} settings Ajax settings.
+   * @returns {jqXHR} The jQuery XMLHttpRequest (jqXHR) object.
+   */
+  var ajax = function (method, id, data, settings) {
+    return $.ajax(deepMerge(this.ajaxSettings, settings, {
+      method: method,
+      url: this.endpoint + (id ? '/' + id : ''),
+      data: data
+    }));
+  };
+
   $.extend(Resource.prototype, {
     init: function (options) {
       this.options = deepMerge(DEFAULTS, options);
@@ -38,65 +55,55 @@
      *
      * @param {string} id Resource ID.
      * @param {object|string|FormData} params Parameters.
-     * @param {object} ajaxSettings Ajax settings.
+     * @param {object} settings Ajax settings.
      * @returns {jqXHR} The jQuery XMLHttpRequest (jqXHR) object.
      */
-    get: function (id, params, ajaxSettings) {
-      var settings = {
-        method: 'GET',
-        url: this.endpoint + (id ? '/' + id : ''),
-        data: params
-      };
-      return $.ajax(deepMerge(this.ajaxSettings, ajaxSettings, settings));
+    get: function (id, params, settings) {
+      return ajax.call(this, 'GET', id, params, settings);
     },
 
     /**
      * Find by params.
      *
      * @param {object|string|FormData} params Parameters.
-     * @param {object} ajaxSettings Ajax settings.
+     * @param {object} settings Ajax settings.
      * @returns {jqXHR} The jQuery XMLHttpRequest (jqXHR) object.
      */
-    find: function (params, ajaxSettings) {
-      return this.get('', params, ajaxSettings);
+    find: function (params, settings) {
+      return this.get('', params, settings);
     },
 
     /**
      * Send an asynchronous HTTP POST (Ajax) request.
      *
      * @param {object|string|FormData} data A resource.
-     * @param {object} ajaxSettings Ajax settings.
+     * @param {object} settings Ajax settings.
      * @returns {jqXHR} The jQuery XMLHttpRequest (jqXHR) object.
      */
-    post: function (data, ajaxSettings) {
-      var settings = {
-        method: 'POST',
-        url: this.endpoint,
-        data: data
-      };
-      return $.ajax(deepMerge(this.ajaxSettings, ajaxSettings, settings));
+    post: function (data, settings) {
+      return ajax.call(this, 'POST', '', data, settings);
     },
 
     /**
      * Alias of `this.post()` method.
      *
      * @param {object|string|FormData} data A resource.
-     * @param {object} ajaxSettings Ajax settings.
+     * @param {object} settings Ajax settings.
      * @returns {jqXHR} The jQuery XMLHttpRequest (jqXHR) object.
      */
-    add: function (data, ajaxSettings) {
-      return this.post(data, ajaxSettings);
+    add: function (data, settings) {
+      return this.post(data, settings);
     },
 
     /**
      * Alias of `this.post()` method.
      *
      * @param {object|string|FormData} data A resource.
-     * @param {object} ajaxSettings Ajax settings.
+     * @param {object} settings Ajax settings.
      * @returns {jqXHR} The jQuery XMLHttpRequest (jqXHR) object.
      */
-    create: function (data, ajaxSettings) {
-      return this.post(data, ajaxSettings);
+    create: function (data, settings) {
+      return this.post(data, settings);
     },
 
     /**
@@ -104,16 +111,11 @@
      *
      * @param {string} id Resource ID.
      * @param {object|string|FormData} data A resource.
-     * @param {object} ajaxSettings Ajax settings.
+     * @param {object} settings Ajax settings.
      * @returns {jqXHR} The jQuery XMLHttpRequest (jqXHR) object.
      */
-    patch: function (id, data, ajaxSettings) {
-      var settings = {
-        method: 'PATCH',
-        url: this.endpoint + '/' + id,
-        data: data
-      };
-      return $.ajax(deepMerge(this.ajaxSettings, ajaxSettings, settings));
+    patch: function (id, data, settings) {
+      return ajax.call(this, 'PATCH', id, data, settings);
     },
 
     /**
@@ -121,11 +123,11 @@
      *
      * @param {string} id Resource ID.
      * @param {object|string|FormData} data A resource.
-     * @param {object} ajaxSettings Ajax settings.
+     * @param {object} settings Ajax settings.
      * @returns {jqXHR} The jQuery XMLHttpRequest (jqXHR) object.
      */
-    update: function (id, data, ajaxSettings) {
-      return this.patch(id, data, ajaxSettings);
+    update: function (id, data, settings) {
+      return this.patch(id, data, settings);
     },
 
     /**
@@ -133,16 +135,11 @@
      *
      * @param {string} id Resource ID.
      * @param {object|string|FormData} data A resource.
-     * @param {object} ajaxSettings Ajax settings.
+     * @param {object} settings Ajax settings.
      * @returns {jqXHR} The jQuery XMLHttpRequest (jqXHR) object.
      */
-    put: function (id, data, ajaxSettings) {
-      var settings = {
-        method: 'PUT',
-        url: this.endpoint + '/' + id,
-        data: data
-      };
-      return $.ajax(deepMerge(this.ajaxSettings, ajaxSettings, settings));
+    put: function (id, data, settings) {
+      return ajax.call(this, 'PUT', id, data, settings);
     },
 
     /**
@@ -150,11 +147,11 @@
      *
      * @param {string} id Resource ID.
      * @param {object|string|FormData} data A resource.
-     * @param {object} ajaxSettings Ajax settings.
+     * @param {object} settings Ajax settings.
      * @returns {jqXHR} The jQuery XMLHttpRequest (jqXHR) object.
      */
-    replace: function (id, data, ajaxSettings) {
-      return this.put(id, data, ajaxSettings);
+    replace: function (id, data, settings) {
+      return this.put(id, data, settings);
     },
 
     /**
@@ -162,16 +159,11 @@
      *
      * @param {string} id Resource ID.
      * @param {object|string|FormData} params Parameters.
-     * @param {object} ajaxSettings Ajax settings.
+     * @param {object} settings Ajax settings.
      * @returns {jqXHR} The jQuery XMLHttpRequest (jqXHR) object.
      */
-    delete: function (id, params, ajaxSettings) {
-      var settings = {
-        method: 'DELETE',
-        url: this.endpoint + (id ? '/' + id : ''),
-        data: params
-      };
-      return $.ajax(deepMerge(this.ajaxSettings, ajaxSettings, settings));
+    delete: function (id, params, settings) {
+      return ajax.call(this, 'DELETE', id, params, settings);
     }
   });
 
