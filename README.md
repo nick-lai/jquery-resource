@@ -8,7 +8,7 @@ jQuery Resource
 [![npm](https://img.shields.io/npm/v/jquery-resource)](https://www.npmjs.com/package/jquery-resource)
 [![GitHub](https://img.shields.io/github/license/nick-lai/jquery-resource)](./LICENSE)
 
-Provides a base class to handle REST resources for jQuery.ajax
+A jQuery plugin that abstracts the process of consuming a REST endpoint.
 
 ## Table of Contents
 
@@ -27,6 +27,7 @@ Provides a base class to handle REST resources for jQuery.ajax
     - [put()](#put)
     - [replace()](#replace)
     - [delete()](#delete)
+  - [Inspiration](#inspiration)
   - [License](#license)
 
 ## Install
@@ -232,6 +233,12 @@ userResource.delete(1).done(function () {
   console.log('DELETE /api/users/1');
 });
 ```
+
+## Inspiration
+
+- [pagekit/vue-resource](https://github.com/pagekit/vue-resource)
+  - [`Vue.resource`](https://github.com/pagekit/vue-resource/blob/develop/docs/resource.md)
+- [ngonzalvez/rest-facade](https://github.com/ngonzalvez/rest-facade)
 
 ## License
 
