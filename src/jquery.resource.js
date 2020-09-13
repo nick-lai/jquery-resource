@@ -43,7 +43,9 @@
     }));
   };
 
-  $.extend(Resource.prototype, {
+  var proto = Resource.prototype;
+
+  $.extend(proto, {
     init: function (options) {
       this.options = deepMerge(DEFAULTS, options);
       this.endpoint = this.options.endpoint;
@@ -85,28 +87,6 @@
     },
 
     /**
-     * Alias of `this.post()` method.
-     *
-     * @param {object|string|FormData} data A resource.
-     * @param {object} settings Ajax settings.
-     * @returns {jqXHR} The jQuery XMLHttpRequest (jqXHR) object.
-     */
-    add: function (data, settings) {
-      return this.post(data, settings);
-    },
-
-    /**
-     * Alias of `this.post()` method.
-     *
-     * @param {object|string|FormData} data A resource.
-     * @param {object} settings Ajax settings.
-     * @returns {jqXHR} The jQuery XMLHttpRequest (jqXHR) object.
-     */
-    create: function (data, settings) {
-      return this.post(data, settings);
-    },
-
-    /**
      * Send an asynchronous HTTP PATCH (Ajax) request.
      *
      * @param {string} id Resource ID.
@@ -116,18 +96,6 @@
      */
     patch: function (id, data, settings) {
       return ajax.call(this, 'PATCH', id, data, settings);
-    },
-
-    /**
-     * Alias of `this.patch()` method.
-     *
-     * @param {string} id Resource ID.
-     * @param {object|string|FormData} data A resource.
-     * @param {object} settings Ajax settings.
-     * @returns {jqXHR} The jQuery XMLHttpRequest (jqXHR) object.
-     */
-    update: function (id, data, settings) {
-      return this.patch(id, data, settings);
     },
 
     /**
@@ -143,18 +111,6 @@
     },
 
     /**
-     * Alias of `this.put()` method.
-     *
-     * @param {string} id Resource ID.
-     * @param {object|string|FormData} data A resource.
-     * @param {object} settings Ajax settings.
-     * @returns {jqXHR} The jQuery XMLHttpRequest (jqXHR) object.
-     */
-    replace: function (id, data, settings) {
-      return this.put(id, data, settings);
-    },
-
-    /**
      * Send an asynchronous HTTP DELETE (Ajax) request.
      *
      * @param {string} id Resource ID.
@@ -165,6 +121,20 @@
     delete: function (id, params, settings) {
       return ajax.call(this, 'DELETE', id, params, settings);
     }
+  });
+
+  $.extend(proto, {
+    // Alias of `post()` method.
+    add: proto.post,
+
+    // Alias of `post()` method.
+    create: proto.post,
+
+    // Alias of `patch()` method.
+    update: proto.patch,
+
+    // Alias of `put()` method.
+    replace: proto.put
   });
 
   $.resource = Resource;
