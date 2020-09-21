@@ -36,11 +36,11 @@
    * @returns {jqXHR} The jQuery XMLHttpRequest (jqXHR) object.
    */
   var ajax = function (method, id, data, settings) {
-    return $.ajax(deepMerge(this.ajaxSettings, settings, {
+    return $.ajax(deepMerge(this.ajaxSettings, {
       method: method,
       url: this.endpoint + (id ? '/' + id : ''),
       data: data
-    }));
+    }, settings));
   };
 
   var proto = Resource.prototype;
