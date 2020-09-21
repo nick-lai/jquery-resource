@@ -2,6 +2,12 @@
 
 ## [Unreleased]
 
+## [v1.0.2]
+
+### Fixed
+
+- Merge settings correctly in `ajax` ([8d23304](https://github.com/nick-lai/jquery-resource/commit/8d23304322e93f5fee4d6db300cf50aa53930e3e))
+
 ## [v1.0.1]
 
 ### Code Refactoring
