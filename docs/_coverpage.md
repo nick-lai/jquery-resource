@@ -1,4 +1,4 @@
-# $.resource <small>1.0.1</small>
+# $.resource <small>1.0.2</small>
 
 > Simplify the ajax process of using REST endpoint resources
 
