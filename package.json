@@ -29,6 +29,7 @@
   "keywords": [
     "jquery",
     "jquery-plugin",
+    "jquery-resource",
     "ecosystem:jquery",
     "ajax",
     "xhr",
