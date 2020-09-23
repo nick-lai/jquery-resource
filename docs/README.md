@@ -235,7 +235,7 @@ var userResource = $.resource({
 userResource.get(1);
 
 // change resource ajax settings
-userResource.options.ajaxSettings.contentType = true;
+userResource.options.ajaxSettings.processData = true;
 ```
 
 #### One-time ajax settings
