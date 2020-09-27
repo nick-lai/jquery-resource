@@ -2,6 +2,12 @@
 
 ## [Unreleased]
 
+## [v1.0.3]
+
+### Fixed
+
+- Fix universal module definition ([5f671a4](https://github.com/nick-lai/jquery-resource/commit/5f671a41290e6fae4ec415a4a9a780ca658e7a39))
+
 ## [v1.0.2]
 
 ### Fixed
@@ -54,7 +60,8 @@
 
 ## [v0.1.2]
 
-[unreleased]: https://github.com/nick-lai/jquery-resource/compare/v1.0.2...master
+[unreleased]: https://github.com/nick-lai/jquery-resource/compare/v1.0.3...master
+[v1.0.3]: https://github.com/nick-lai/jquery-resource/compare/v1.0.2...v1.0.3
 [v1.0.2]: https://github.com/nick-lai/jquery-resource/compare/v1.0.1...v1.0.2
 [v1.0.1]: https://github.com/nick-lai/jquery-resource/compare/v1.0.0...v1.0.1
 [v1.0.0]: https://github.com/nick-lai/jquery-resource/compare/v1.0.0-rc.4...v1.0.0

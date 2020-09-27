@@ -47,7 +47,7 @@ A jQuery plugin that abstracts the process of consuming a REST endpoint.
 ### CDN
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/jquery-resource@1.0.2/dist/jquery.resource.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-resource@1.0.3/dist/jquery.resource.min.js"></script>
 ```
 
 ## Usage
