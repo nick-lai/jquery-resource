@@ -1,13 +1,13 @@
-(function (factory) {
+(function (root, factory) {
   /* istanbul ignore next */
   if (typeof define === 'function' && define.amd) {
     define(['jquery'], factory);
   } else if (typeof module === 'object' && module.exports) {
     module.exports = factory(require('jquery'));
   } else {
-    factory(jQuery);
+    factory(root.jQuery);
   }
-}(function ($) {
+}(typeof self !== 'undefined' ? self : this, function ($) {
   'use strict';
 
   var Resource = function (options) {
@@ -137,5 +137,5 @@
     replace: proto.put
   });
 
-  $.resource = Resource;
+  return $.resource = Resource;
 }));
