@@ -10,7 +10,7 @@ describe('calls into $.ajax with the correct params', () => {
 
   test('get', () => {
     const ajaxSpy = jest.spyOn($, 'ajax');
-    const userResource = new $.resource({
+    const userResource = $.resource({
       endpoint: 'https://reqres.in/api/users'
     });
 
@@ -24,7 +24,7 @@ describe('calls into $.ajax with the correct params', () => {
 
   test('find', () => {
     const ajaxSpy = jest.spyOn($, 'ajax');
-    const userResource = new $.resource({
+    const userResource = $.resource({
       endpoint: 'https://reqres.in/api/users'
     });
 
@@ -43,7 +43,7 @@ describe('calls into $.ajax with the correct params', () => {
 
   test('post', () => {
     const ajaxSpy = jest.spyOn($, 'ajax');
-    const userResource = new $.resource({
+    const userResource = $.resource({
       endpoint: 'https://reqres.in/api/users'
     });
 
@@ -66,7 +66,7 @@ describe('calls into $.ajax with the correct params', () => {
 
   test('add', () => {
     const ajaxSpy = jest.spyOn($, 'ajax');
-    const userResource = new $.resource({
+    const userResource = $.resource({
       endpoint: 'https://reqres.in/api/users'
     });
 
@@ -89,7 +89,7 @@ describe('calls into $.ajax with the correct params', () => {
 
   test('create', () => {
     const ajaxSpy = jest.spyOn($, 'ajax');
-    const userResource = new $.resource({
+    const userResource = $.resource({
       endpoint: 'https://reqres.in/api/users'
     });
 
@@ -112,7 +112,7 @@ describe('calls into $.ajax with the correct params', () => {
 
   test('patch', () => {
     const ajaxSpy = jest.spyOn($, 'ajax');
-    const userResource = new $.resource({
+    const userResource = $.resource({
       endpoint: 'https://reqres.in/api/users'
     });
 
@@ -135,7 +135,7 @@ describe('calls into $.ajax with the correct params', () => {
 
   test('update', () => {
     const ajaxSpy = jest.spyOn($, 'ajax');
-    const userResource = new $.resource({
+    const userResource = $.resource({
       endpoint: 'https://reqres.in/api/users'
     });
 
@@ -158,7 +158,7 @@ describe('calls into $.ajax with the correct params', () => {
 
   test('put', () => {
     const ajaxSpy = jest.spyOn($, 'ajax');
-    const userResource = new $.resource({
+    const userResource = $.resource({
       endpoint: 'https://reqres.in/api/users'
     });
 
@@ -181,7 +181,7 @@ describe('calls into $.ajax with the correct params', () => {
 
   test('replace', () => {
     const ajaxSpy = jest.spyOn($, 'ajax');
-    const userResource = new $.resource({
+    const userResource = $.resource({
       endpoint: 'https://reqres.in/api/users'
     });
 
