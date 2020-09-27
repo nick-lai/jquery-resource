@@ -1,6 +1,6 @@
 # $.resource <small>1.0.2</small>
 
-> Simplify the ajax process of using REST endpoint resources
+> A jQuery plugin that abstracts the process of consuming a REST endpoint.
 
 - ⚡ Simple and lightweight
 - 🚀 Incredible high availability
