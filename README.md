@@ -1,12 +1,14 @@
 jQuery Resource
 ===
 
-[![workflows/nodejs.yml](https://github.com/nick-lai/jquery-resource/workflows/CodeQL/badge.svg)](https://github.com/nick-lai/jquery-resource/actions?query=workflow%3ACodeQL)
+[![workflows/codeql-analysis.yml](https://github.com/nick-lai/jquery-resource/workflows/CodeQL/badge.svg)](https://github.com/nick-lai/jquery-resource/actions?query=workflow%3ACodeQL)
 [![workflows/nodejs.yml](https://github.com/nick-lai/jquery-resource/workflows/Node.js%20CI/badge.svg)](https://github.com/nick-lai/jquery-resource/actions?query=workflow%3A%22Node.js+CI%22)
-[![Codecov](https://img.shields.io/codecov/c/github/nick-lai/jquery-resource?label=codecov&logo=codecov)](https://codecov.io/gh/nick-lai/jquery-resource)
-[![Code Climate maintainability](https://img.shields.io/codeclimate/maintainability/nick-lai/jquery-resource?color=turquoise&logo=code-climate)](https://codeclimate.com/github/nick-lai/jquery-resource)
-[![npm](https://img.shields.io/npm/v/jquery-resource)](https://www.npmjs.com/package/jquery-resource)
-[![GitHub](https://img.shields.io/github/license/nick-lai/jquery-resource)](./LICENSE)
+[![Codecov](https://badgen.net/codecov/c/github/nick-lai/jquery-resource)](https://codecov.io/gh/nick-lai/jquery-resource)
+[![Code Climate maintainability](https://badgen.net/codeclimate/maintainability/nick-lai/jquery-resource)](https://codeclimate.com/github/nick-lai/jquery-resource)
+[![LGTM Grade](https://badgen.net/lgtm/grade/g/nick-lai/jquery-resource)](https://lgtm.com/projects/g/nick-lai/jquery-resource/context:javascript)
+[![npm](https://badgen.net/npm/v/jquery-resource)](https://www.npmjs.com/package/jquery-resource)
+[![bundle size](https://badgen.net/bundlephobia/minzip/jquery-resource)](https://bundlephobia.com/result?p=jquery-resource)
+[![GitHub](https://badgen.net/github/license/nick-lai/jquery-resource)](./LICENSE)
 
 A jQuery plugin that abstracts the process of consuming a REST endpoint.
 
