@@ -21,7 +21,7 @@ A jQuery plugin that abstracts the process of consuming a REST endpoint.
 - [jQuery Resource](#jquery-resource)
   - [Features](#features)
   - [Table of Contents](#table-of-contents)
-  - [Install](#install)
+  - [Installation](#installation)
     - [CDN](#cdn)
   - [Usage](#usage)
     - [Methods](#methods)
