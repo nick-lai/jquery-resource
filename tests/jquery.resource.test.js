@@ -229,4 +229,36 @@ describe('calls into $.ajax with the correct params', () => {
       url: 'https://reqres.in/api/users',
     });
   });
+
+  test('resource ajax settings', () => {
+    const ajaxSpy = jest.spyOn($, 'ajax');
+    const userResource = $.resource({
+      endpoint: 'https://reqres.in/api/users',
+      ajaxSettings: {
+        contentType: false,
+        processData: false
+      }
+    });
+
+    userResource.get(1);
+
+    expect(ajaxSpy).toBeCalledWith({
+      method: 'GET',
+      url: 'https://reqres.in/api/users/1',
+      contentType: false,
+      processData: false
+    });
+
+    ajaxSpy.mockReset();
+
+    userResource.ajaxSettings.processData = true;
+    userResource.get(1);
+
+    expect(ajaxSpy).toBeCalledWith({
+      method: 'GET',
+      url: 'https://reqres.in/api/users/1',
+      contentType: false,
+      processData: true
+    });
+  });
 });
