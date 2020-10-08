@@ -261,4 +261,52 @@ describe('calls into $.ajax with the correct params', () => {
       processData: true
     });
   });
+
+  test('one-time ajax settings', () => {
+    const ajaxSpy = jest.spyOn($, 'ajax');
+    const userResource = $.resource({
+      endpoint: 'https://reqres.in/api/users',
+      ajaxSettings: {
+        dataType: 'text'
+      }
+    });
+
+    userResource.post({
+      email: 'emma.wong@reqres.in',
+      first_name: 'Emma',
+      last_name: 'Wong'
+    }, {
+      dataType: 'json'
+    });
+
+    expect(ajaxSpy).toBeCalledWith({
+      method: 'POST',
+      url: 'https://reqres.in/api/users',
+      data: {
+        email: 'emma.wong@reqres.in',
+        first_name: 'Emma',
+        last_name: 'Wong'
+      },
+      dataType: 'json'
+    });
+
+    ajaxSpy.mockReset();
+
+    userResource.post({
+      email: 'emma.wong@reqres.in',
+      first_name: 'Emma',
+      last_name: 'Wong'
+    });
+
+    expect(ajaxSpy).toBeCalledWith({
+      method: 'POST',
+      url: 'https://reqres.in/api/users',
+      data: {
+        email: 'emma.wong@reqres.in',
+        first_name: 'Emma',
+        last_name: 'Wong'
+      },
+      dataType: 'text'
+    });
+  });
 });
