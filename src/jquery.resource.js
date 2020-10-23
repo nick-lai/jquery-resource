@@ -14,128 +14,126 @@
     if (!(this instanceof Resource)) {
       return new Resource(options);
     }
-    this.init(options);
+    init(this, options);
   };
 
-  var DEFAULTS = {
+  Resource.DEFAULTS = {
     endpoint: '',
-    ajaxSettings: {}
+    ajaxSettings: {},
   };
 
-  var deepMerge = function () {
+  return $.resource = Resource;
+
+  function deepMerge () {
     return $.extend.apply(null, [true, {}].concat($.makeArray(arguments)));
-  };
+  }
 
   /**
-   * Ajax (private method for Resource)
+   * Ajax
    *
+   * @param {object} instance The Resource instance
    * @param {string} method The HTTP method to use for the request.
    * @param {string} id Resource ID.
    * @param {object|string|FormData} data A resource.
    * @param {object} settings Ajax settings.
    * @returns {jqXHR} The jQuery XMLHttpRequest (jqXHR) object.
    */
-  var ajax = function (method, id, data, settings) {
-    return $.ajax(deepMerge(this.ajaxSettings, {
+  function ajax (instance, method, id, data, settings) {
+    return $.ajax(deepMerge(instance.ajaxSettings, {
       method: method,
-      url: this.endpoint + (id ? '/' + id : ''),
-      data: data
+      url: instance.endpoint + (id ? '/' + id : ''),
+      data: data,
     }, settings));
-  };
+  }
 
-  var proto = Resource.prototype;
+  function init (instance, options) {
+    instance.options = deepMerge(Resource.DEFAULTS, options);
+    instance.endpoint = instance.options.endpoint;
+    instance.ajaxSettings = instance.options.ajaxSettings;
+    initActions(instance);
+    initAliases(instance);
+  }
 
-  $.extend(proto, {
-    init: function (options) {
-      this.options = deepMerge(DEFAULTS, options);
-      this.endpoint = this.options.endpoint;
-      this.ajaxSettings = this.options.ajaxSettings;
-    },
+  function initActions (instance) {
+    $.extend(instance, {
+      /**
+       * Send an asynchronous HTTP GET (Ajax) request.
+       *
+       * @param {string} id Resource ID.
+       * @param {object|string|FormData} params Parameters.
+       * @param {object} settings Ajax settings.
+       * @returns {jqXHR} The jQuery XMLHttpRequest (jqXHR) object.
+       */
+      get: function (id, params, settings) {
+        return ajax(this, 'GET', id, params, settings);
+      },
 
-    /**
-     * Send an asynchronous HTTP GET (Ajax) request.
-     *
-     * @param {string} id Resource ID.
-     * @param {object|string|FormData} params Parameters.
-     * @param {object} settings Ajax settings.
-     * @returns {jqXHR} The jQuery XMLHttpRequest (jqXHR) object.
-     */
-    get: function (id, params, settings) {
-      return ajax.call(this, 'GET', id, params, settings);
-    },
+      /**
+       * Find by params.
+       *
+       * @param {object|string|FormData} params Parameters.
+       * @param {object} settings Ajax settings.
+       * @returns {jqXHR} The jQuery XMLHttpRequest (jqXHR) object.
+       */
+      find: function (params, settings) {
+        return ajax(this, 'GET', '', params, settings);
+      },
 
-    /**
-     * Find by params.
-     *
-     * @param {object|string|FormData} params Parameters.
-     * @param {object} settings Ajax settings.
-     * @returns {jqXHR} The jQuery XMLHttpRequest (jqXHR) object.
-     */
-    find: function (params, settings) {
-      return this.get('', params, settings);
-    },
+      /**
+       * Send an asynchronous HTTP POST (Ajax) request.
+       *
+       * @param {object|string|FormData} data A resource.
+       * @param {object} settings Ajax settings.
+       * @returns {jqXHR} The jQuery XMLHttpRequest (jqXHR) object.
+       */
+      post: function (data, settings) {
+        return ajax(this, 'POST', '', data, settings);
+      },
 
-    /**
-     * Send an asynchronous HTTP POST (Ajax) request.
-     *
-     * @param {object|string|FormData} data A resource.
-     * @param {object} settings Ajax settings.
-     * @returns {jqXHR} The jQuery XMLHttpRequest (jqXHR) object.
-     */
-    post: function (data, settings) {
-      return ajax.call(this, 'POST', '', data, settings);
-    },
+      /**
+       * Send an asynchronous HTTP PATCH (Ajax) request.
+       *
+       * @param {string} id Resource ID.
+       * @param {object|string|FormData} data A resource.
+       * @param {object} settings Ajax settings.
+       * @returns {jqXHR} The jQuery XMLHttpRequest (jqXHR) object.
+       */
+      patch: function (id, data, settings) {
+        return ajax(this, 'PATCH', id, data, settings);
+      },
 
-    /**
-     * Send an asynchronous HTTP PATCH (Ajax) request.
-     *
-     * @param {string} id Resource ID.
-     * @param {object|string|FormData} data A resource.
-     * @param {object} settings Ajax settings.
-     * @returns {jqXHR} The jQuery XMLHttpRequest (jqXHR) object.
-     */
-    patch: function (id, data, settings) {
-      return ajax.call(this, 'PATCH', id, data, settings);
-    },
+      /**
+       * Send an asynchronous HTTP PUT (Ajax) request.
+       *
+       * @param {string} id Resource ID.
+       * @param {object|string|FormData} data A resource.
+       * @param {object} settings Ajax settings.
+       * @returns {jqXHR} The jQuery XMLHttpRequest (jqXHR) object.
+       */
+      put: function (id, data, settings) {
+        return ajax(this, 'PUT', id, data, settings);
+      },
 
-    /**
-     * Send an asynchronous HTTP PUT (Ajax) request.
-     *
-     * @param {string} id Resource ID.
-     * @param {object|string|FormData} data A resource.
-     * @param {object} settings Ajax settings.
-     * @returns {jqXHR} The jQuery XMLHttpRequest (jqXHR) object.
-     */
-    put: function (id, data, settings) {
-      return ajax.call(this, 'PUT', id, data, settings);
-    },
+      /**
+       * Send an asynchronous HTTP DELETE (Ajax) request.
+       *
+       * @param {string} id Resource ID.
+       * @param {object|string|FormData} params Parameters.
+       * @param {object} settings Ajax settings.
+       * @returns {jqXHR} The jQuery XMLHttpRequest (jqXHR) object.
+       */
+      delete: function (id, params, settings) {
+        return ajax(this, 'DELETE', id, params, settings);
+      }
+    });
+  }
 
-    /**
-     * Send an asynchronous HTTP DELETE (Ajax) request.
-     *
-     * @param {string} id Resource ID.
-     * @param {object|string|FormData} params Parameters.
-     * @param {object} settings Ajax settings.
-     * @returns {jqXHR} The jQuery XMLHttpRequest (jqXHR) object.
-     */
-    delete: function (id, params, settings) {
-      return ajax.call(this, 'DELETE', id, params, settings);
-    }
-  });
-
-  $.extend(proto, {
-    // Alias of `post()` method.
-    add: proto.post,
-
-    // Alias of `post()` method.
-    create: proto.post,
-
-    // Alias of `patch()` method.
-    update: proto.patch,
-
-    // Alias of `put()` method.
-    replace: proto.put
-  });
-
-  return $.resource = Resource;
+  function initAliases (instance) {
+    $.extend(instance, {
+      add: instance.post,
+      create: instance.post,
+      update: instance.patch,
+      replace: instance.put,
+    });
+  }
 }));
