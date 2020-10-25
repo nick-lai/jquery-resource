@@ -1,4 +1,4 @@
-# $.resource <small>1.0.3</small>
+# $.resource <small>1.1.0</small>
 
 > A jQuery plugin that abstracts the process of consuming a REST endpoint.
 

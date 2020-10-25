@@ -2,6 +2,19 @@
 
 ## [Unreleased]
 
+## [v1.1.0]
+
+### Added
+
+- Action's ajax setting ([dad7044](https://github.com/nick-lai/jquery-resource/commit/dad704498fdb099cabe07313192d217aba85aea2))
+- Action's last request ([737abe1](https://github.com/nick-lai/jquery-resource/commit/737abe11efd07d43e1b76fe7af443bd7c4d6f0d1))
+- Custom actions ([c4c0bad](https://github.com/nick-lai/jquery-resource/commit/c4c0bad8353c9fae1748e58e26ca796deac1567d))
+
+### Code Refactoring
+
+- Improve code readability ([b71f192](https://github.com/nick-lai/jquery-resource/commit/b71f1920967725ce0037990494c6960e57aaa31c))
+
+
 ## [v1.0.3]
 
 ### Fixed
@@ -60,7 +73,8 @@
 
 ## [v0.1.2]
 
-[unreleased]: https://github.com/nick-lai/jquery-resource/compare/v1.0.3...master
+[unreleased]: https://github.com/nick-lai/jquery-resource/compare/v1.1.0...master
+[v1.1.0]: https://github.com/nick-lai/jquery-resource/compare/v1.0.3...v1.1.0
 [v1.0.3]: https://github.com/nick-lai/jquery-resource/compare/v1.0.2...v1.0.3
 [v1.0.2]: https://github.com/nick-lai/jquery-resource/compare/v1.0.1...v1.0.2
 [v1.0.1]: https://github.com/nick-lai/jquery-resource/compare/v1.0.0...v1.0.1
