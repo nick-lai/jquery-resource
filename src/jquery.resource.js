@@ -35,18 +35,18 @@
   /**
    * Ajax
    *
-   * @param {object} instance The Resource instance
+   * @param {Resource} instance The Resource instance.
    * @param {string} id Resource ID.
    * @param {object|string|FormData} data A resource.
-   * @param {object} actionSettings Ajax settings of action.
+   * @param {object} action The action function.
    * @param {object} settings Ajax settings.
    * @returns {jqXHR} The jQuery XMLHttpRequest (jqXHR) object.
    */
-  function ajax (instance, id, data, actionSettings, settings) {
-    return instance.ajax(deepMerge({
+  function ajax (instance, id, data, action, settings) {
+    return action.lastRequest = instance.ajax(deepMerge({
       url: instance.endpoint + (id ? '/' + id : ''),
       data: data,
-    }, actionSettings, settings));
+    }, action.ajaxSettings, settings));
   }
 
   function init (instance, options) {
@@ -68,7 +68,7 @@
        * @returns {jqXHR} The jQuery XMLHttpRequest (jqXHR) object.
        */
       get: function (id, params, settings) {
-        return ajax(this, id, params, this.get.ajaxSettings, settings);
+        return ajax(this, id, params, this.get, settings);
       },
 
       /**
@@ -79,7 +79,7 @@
        * @returns {jqXHR} The jQuery XMLHttpRequest (jqXHR) object.
        */
       find: function (params, settings) {
-        return ajax(this, '', params, this.find.ajaxSettings, settings);
+        return ajax(this, '', params, this.find, settings);
       },
 
       /**
@@ -90,7 +90,7 @@
        * @returns {jqXHR} The jQuery XMLHttpRequest (jqXHR) object.
        */
       post: function (data, settings) {
-        return ajax(this, '', data, this.post.ajaxSettings, settings);
+        return ajax(this, '', data, this.post, settings);
       },
 
       /**
@@ -102,7 +102,7 @@
        * @returns {jqXHR} The jQuery XMLHttpRequest (jqXHR) object.
        */
       patch: function (id, data, settings) {
-        return ajax(this, id, data, this.patch.ajaxSettings, settings);
+        return ajax(this, id, data, this.patch, settings);
       },
 
       /**
@@ -114,7 +114,7 @@
        * @returns {jqXHR} The jQuery XMLHttpRequest (jqXHR) object.
        */
       put: function (id, data, settings) {
-        return ajax(this, id, data, this.put.ajaxSettings, settings);
+        return ajax(this, id, data, this.put, settings);
       },
 
       /**
@@ -126,7 +126,7 @@
        * @returns {jqXHR} The jQuery XMLHttpRequest (jqXHR) object.
        */
       delete: function (id, params, settings) {
-        return ajax(this, id, params, this.delete.ajaxSettings, settings);
+        return ajax(this, id, params, this.delete, settings);
       }
     };
 

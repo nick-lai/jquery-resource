@@ -331,4 +331,21 @@ describe('calls into $.ajax with the correct params', () => {
       dataType: 'text'
     });
   });
+
+  test('action\'s last request', () => {
+    jest.spyOn($, 'ajax').mockImplementation(() => new XMLHttpRequest());
+
+    const userResource = $.resource({
+      endpoint: 'https://reqres.in/api/users',
+    });
+
+    const firstRequest = userResource.get(1);
+
+    expect(firstRequest).toBe(userResource.get.lastRequest);
+
+    const secondRequest = userResource.get(2);
+
+    expect(firstRequest).not.toBe(userResource.get.lastRequest);
+    expect(secondRequest).toBe(userResource.get.lastRequest);
+  });
 });
