@@ -262,6 +262,28 @@ describe('calls into $.ajax with the correct params', () => {
     });
   });
 
+  test('action\'s ajax settings', () => {
+    const ajaxSpy = jest.spyOn($, 'ajax');
+    const userResource = $.resource({
+      endpoint: 'https://reqres.in/api/users',
+      ajaxSettings: {
+        contentType: false,
+        processData: false
+      },
+    });
+
+    userResource.get.ajaxSettings.contentType = true;
+
+    userResource.get(1);
+
+    expect(ajaxSpy).toBeCalledWith({
+      method: 'GET',
+      url: 'https://reqres.in/api/users/1',
+      contentType: true,
+      processData: false
+    });
+  });
+
   test('one-time ajax settings', () => {
     const ajaxSpy = jest.spyOn($, 'ajax');
     const userResource = $.resource({
