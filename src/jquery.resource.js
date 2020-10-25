@@ -20,6 +20,7 @@
   Resource.DEFAULTS = {
     endpoint: '',
     ajaxSettings: {},
+    customActions: {},
   };
 
   Resource.prototype.ajax = function (settings) {
@@ -55,6 +56,7 @@
     instance.ajaxSettings = instance.options.ajaxSettings;
     initActions(instance);
     initAliases(instance);
+    initCustomActions(instance);
   }
 
   function initActions (instance) {
@@ -145,6 +147,27 @@
       create: instance.post,
       update: instance.patch,
       replace: instance.put,
+    });
+  }
+
+  function initCustomActions (instance) {
+    var customActions = instance.options.customActions;
+
+    $.each(customActions, function (actionName, ajaxSettings) {
+      if (actionName in instance) {
+        console.error(
+          '[Resource] Custom action "' +
+            actionName +
+            '" conflicts with an existing resource instance method.'
+        );
+        return true;
+      }
+
+      var action = function (data, settings) {
+        return ajax(instance, '', data, action, settings)
+      };
+      action.ajaxSettings = ajaxSettings;
+      instance[actionName] = action;
     });
   }
 }));

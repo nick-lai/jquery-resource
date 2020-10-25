@@ -348,4 +348,66 @@ describe('calls into $.ajax with the correct params', () => {
     expect(firstRequest).not.toBe(userResource.get.lastRequest);
     expect(secondRequest).toBe(userResource.get.lastRequest);
   });
+
+  test('custom actions', () => {
+    const ajaxSpy = jest.spyOn($, 'ajax');
+    ajaxSpy.mockImplementation(() => new XMLHttpRequest());
+
+    const userResource = $.resource({
+      endpoint: 'https://reqres.in/api/users',
+      customActions: {
+        copy: {
+          method: 'POST',
+          url: 'https://reqres.in/api/users/copy',
+        },
+        export: {
+          method: 'GET',
+          url: 'https://reqres.in/api/users/export',
+        },
+        get: {
+          method: 'GET',
+        },
+      }
+    });
+
+    expect({
+      method: 'POST',
+      url: 'https://reqres.in/api/users/copy',
+    }).toEqual(userResource.copy.ajaxSettings);
+
+    expect({
+      method: 'GET',
+      url: 'https://reqres.in/api/users/export',
+    }).toEqual(userResource.export.ajaxSettings);
+
+    let request = userResource.copy({
+      id: 1,
+    });
+
+    expect(request).toBe(userResource.copy.lastRequest);
+
+    expect(ajaxSpy).toBeCalledWith({
+      method: 'POST',
+      url: 'https://reqres.in/api/users/copy',
+      data: {
+        id: 1,
+      }
+    });
+
+    ajaxSpy.mockReset();
+
+    request = userResource.export({
+      id: 2,
+    });
+
+    expect(request).toBe(userResource.export.lastRequest);
+
+    expect(ajaxSpy).toBeCalledWith({
+      method: 'GET',
+      url: 'https://reqres.in/api/users/export',
+      data: {
+        id: 2,
+      }
+    });
+  });
 });
