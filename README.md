@@ -38,8 +38,11 @@ A jQuery plugin that abstracts the process of consuming a REST endpoint.
       - [create()](#create)
       - [update()](#update)
       - [replace()](#replace)
+    - [Custom actions](#custom-actions)
+    - [Last request](#last-request)
     - [Ajax settings](#ajax-settings)
-      - [Resource ajax settings](#resource-ajax-settings)
+      - [Resource's ajax settings](#resources-ajax-settings)
+      - [Action's ajax settings](#actions-ajax-settings)
       - [One-time ajax settings](#one-time-ajax-settings)
   - [Inspiration](#inspiration)
   - [License](#license)
@@ -252,16 +255,49 @@ userResource.replace(1, {
 });
 ```
 
+### Custom actions
+
+```javascript
+var userResource = $.resource({
+  endpoint: 'https://reqres.in/api/users',
+  customActions: {
+    // actionName: ajaxSettings
+    copy: {method: 'POST', url: 'https://reqres.in/api/users/copy'},
+  },
+});
+
+// customAction(params, ajaxSettings)
+userResource.copy({
+  id: 1,
+});
+```
+
+### Last request
+
+```javascript
+var userResource = $.resource({
+  endpoint: 'https://reqres.in/api/users',
+});
+
+userResource.get(1);
+userResource.get(2);
+
+// action's last request
+userResource.get.lastRequest.done(function () {
+  console.log('GET /api/users/2');
+});
+```
+
 ### Ajax settings
 
 [jQuery.ajax(settings)](https://api.jquery.com/jquery.ajax/#jQuery-ajax-settings "jQuery.ajax() | jQuery API Documentation")
 
-#### Resource ajax settings
+#### Resource's ajax settings
 
 ```javascript
-// use resource ajax settings to actions
 var userResource = $.resource({
   endpoint: 'https://reqres.in/api/users',
+  // use resource's ajax settings to actions
   ajaxSettings: {
     contentType: false,
     processData: false
@@ -272,6 +308,23 @@ userResource.get(1);
 
 // change resource ajax settings
 userResource.ajaxSettings.processData = true;
+```
+
+#### Action's ajax settings
+
+```javascript
+var userResource = $.resource({
+  endpoint: 'https://reqres.in/api/users',
+});
+
+// action's ajax settings
+userResource.post.ajaxSettings.processData = false;
+
+userResource.post({
+  email: 'emma.wong@reqres.in',
+  first_name: 'Emma',
+  last_name: 'Wong'
+});
 ```
 
 #### One-time ajax settings
