@@ -25,6 +25,8 @@ A jQuery plugin that abstracts the process of consuming a REST endpoint.
   - [Table of Contents](#table-of-contents)
   - [Installation](#installation)
     - [CDN](#cdn)
+      - [jsDelivr](#jsdelivr)
+      - [unpkg](#unpkg)
   - [Usage](#usage)
     - [Methods](#methods)
       - [post()](#post)
@@ -51,8 +53,22 @@ A jQuery plugin that abstracts the process of consuming a REST endpoint.
 
 ### CDN
 
+jQuery.resource is available on jsDelivr or unpkg.
+
+#### jsDelivr
+
+Load jQuery.resource from [jsDelivr](https://www.jsdelivr.com/package/npm/jquery-resource).
+
 ```html
-<script src="https://cdn.jsdelivr.net/npm/jquery-resource@1.1.0/dist/jquery.resource.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-resource@1.1.0"></script>
+```
+
+#### unpkg
+
+Load jQuery.resource from [unpkg](https://unpkg.com/jquery-resource/dist/).
+
+```html
+<script src="https://unpkg.com/jquery-resource@1.1.0"></script>
 ```
 
 ## Usage
