@@ -99,6 +99,8 @@ userResource.patch(1, {
 userResource.delete(1);
 ```
 
+Try it out on [JSFiddle](https://jsfiddle.net/nick_lai/e0k8om4f/).
+
 ### Methods
 
 #### post()
