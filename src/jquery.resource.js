@@ -156,9 +156,8 @@
     $.each(customActions, function (actionName, ajaxSettings) {
       if (actionName in instance) {
         console.error(
-          '[Resource] Custom action "' +
-            actionName +
-            '" conflicts with an existing resource instance method.'
+          '[jquery-resource] Custom action "%s" conflicts with an existing resource instance property.',
+          actionName
         );
         return true;
       }
