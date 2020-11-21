@@ -2,6 +2,12 @@
 
 ## [Unreleased]
 
+## [v1.1.1]
+
+### Code Refactoring
+
+- Optimize error messages ([1505de7](https://github.com/nick-lai/jquery-resource/commit/1505de7a48c506c8247cbc9269c8631a179dc360))
+
 ## [v1.1.0]
 
 ### Added
@@ -73,7 +79,8 @@
 
 ## [v0.1.2]
 
-[unreleased]: https://github.com/nick-lai/jquery-resource/compare/v1.1.0...master
+[unreleased]: https://github.com/nick-lai/jquery-resource/compare/v1.1.1...master
+[v1.1.1]: https://github.com/nick-lai/jquery-resource/compare/v1.1.0...v1.1.1
 [v1.1.0]: https://github.com/nick-lai/jquery-resource/compare/v1.0.3...v1.1.0
 [v1.0.3]: https://github.com/nick-lai/jquery-resource/compare/v1.0.2...v1.0.3
 [v1.0.2]: https://github.com/nick-lai/jquery-resource/compare/v1.0.1...v1.0.2
