@@ -50,6 +50,19 @@
     }, action.ajaxSettings, settings));
   }
 
+  function createAction (instance, ajaxSettings, useID) {
+    var action = useID ? function (id, data, settings) {
+      return ajax(instance, id, data, action, settings);
+    } : function (data, settings) {
+      return ajax(instance, '', data, action, settings);
+    };
+
+    action.ajaxSettings = ajaxSettings;
+    action.lastRequest = null;
+
+    return action;
+  }
+
   function init (instance, options) {
     instance.options = deepMerge(Resource.DEFAULTS, options);
     instance.endpoint = instance.options.endpoint;
@@ -69,9 +82,7 @@
        * @param {object} settings Ajax settings.
        * @returns {jqXHR} The jQuery XMLHttpRequest (jqXHR) object.
        */
-      get: function (id, params, settings) {
-        return ajax(this, id, params, this.get, settings);
-      },
+      get: createAction(instance, { method: 'GET' }, true),
 
       /**
        * Find by params.
@@ -80,9 +91,7 @@
        * @param {object} settings Ajax settings.
        * @returns {jqXHR} The jQuery XMLHttpRequest (jqXHR) object.
        */
-      find: function (params, settings) {
-        return ajax(this, '', params, this.find, settings);
-      },
+      find: createAction(instance, { method: 'GET' }),
 
       /**
        * Send an asynchronous HTTP POST (Ajax) request.
@@ -91,9 +100,7 @@
        * @param {object} settings Ajax settings.
        * @returns {jqXHR} The jQuery XMLHttpRequest (jqXHR) object.
        */
-      post: function (data, settings) {
-        return ajax(this, '', data, this.post, settings);
-      },
+      post: createAction(instance, { method: 'POST' }),
 
       /**
        * Send an asynchronous HTTP PATCH (Ajax) request.
@@ -103,9 +110,7 @@
        * @param {object} settings Ajax settings.
        * @returns {jqXHR} The jQuery XMLHttpRequest (jqXHR) object.
        */
-      patch: function (id, data, settings) {
-        return ajax(this, id, data, this.patch, settings);
-      },
+      patch: createAction(instance, { method: 'PATCH' }, true),
 
       /**
        * Send an asynchronous HTTP PUT (Ajax) request.
@@ -115,9 +120,7 @@
        * @param {object} settings Ajax settings.
        * @returns {jqXHR} The jQuery XMLHttpRequest (jqXHR) object.
        */
-      put: function (id, data, settings) {
-        return ajax(this, id, data, this.put, settings);
-      },
+      put: createAction(instance, { method: 'PUT' }, true),
 
       /**
        * Send an asynchronous HTTP DELETE (Ajax) request.
@@ -127,16 +130,8 @@
        * @param {object} settings Ajax settings.
        * @returns {jqXHR} The jQuery XMLHttpRequest (jqXHR) object.
        */
-      delete: function (id, params, settings) {
-        return ajax(this, id, params, this.delete, settings);
-      }
+      delete: createAction(instance, { method: 'DELETE' }, true),
     };
-
-    $.each(actions, function (actionName, action) {
-      action.ajaxSettings = {
-        method: actionName === 'find' ? 'GET' : actionName.toUpperCase(),
-      };
-    });
 
     $.extend(instance, actions);
   }
@@ -161,12 +156,7 @@
         );
         return true;
       }
-
-      var action = function (data, settings) {
-        return ajax(instance, '', data, action, settings)
-      };
-      action.ajaxSettings = ajaxSettings;
-      instance[actionName] = action;
+      instance[actionName] = createAction(instance, ajaxSettings);
     });
   }
 }));
