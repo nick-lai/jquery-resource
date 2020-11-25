@@ -2,6 +2,12 @@
 
 ## [Unreleased]
 
+## [v1.1.2]
+
+### Code Refactoring
+
+- Extract method to `createAction()` ([0d23e8a](https://github.com/nick-lai/jquery-resource/commit/0d23e8a8d273c7e859182f2d0bac52f7d265c819))
+
 ## [v1.1.1]
 
 ### Code Refactoring
@@ -79,7 +85,8 @@
 
 ## [v0.1.2]
 
-[unreleased]: https://github.com/nick-lai/jquery-resource/compare/v1.1.1...master
+[unreleased]: https://github.com/nick-lai/jquery-resource/compare/v1.1.2...master
+[v1.1.2]: https://github.com/nick-lai/jquery-resource/compare/v1.1.1...v1.1.2
 [v1.1.1]: https://github.com/nick-lai/jquery-resource/compare/v1.1.0...v1.1.1
 [v1.1.0]: https://github.com/nick-lai/jquery-resource/compare/v1.0.3...v1.1.0
 [v1.0.3]: https://github.com/nick-lai/jquery-resource/compare/v1.0.2...v1.0.3
