@@ -33,6 +33,10 @@
     return $.extend.apply(null, [true, {}].concat($.makeArray(arguments)));
   }
 
+  function isPendingRequest (request) {
+    return !!request && request.readyState !== 4;
+  }
+
   /**
    * Ajax
    *
@@ -59,6 +63,9 @@
 
     action.ajaxSettings = ajaxSettings;
     action.lastRequest = null;
+    action.isPending = function () {
+      return isPendingRequest(action.lastRequest);
+    };
 
     return action;
   }

@@ -410,4 +410,69 @@ describe('calls into $.ajax with the correct params', () => {
       }
     });
   });
+
+  test('isPending (action.lastRequest)', () => {
+    const ajaxSpy = jest.spyOn($, 'ajax');
+    ajaxSpy.mockImplementation(() => new XMLHttpRequest());
+
+    const userResource = $.resource({
+      endpoint: 'https://reqres.in/api/users',
+      customActions: {
+        foo: {
+          method: 'GET',
+          url: 'https://reqres.in/api/users/foo',
+        },
+        bar: {
+          method: 'POST',
+          url: 'https://reqres.in/api/users/bar',
+        },
+      }
+    });
+
+    // get
+    expect(userResource.get.isPending()).toBe(false);
+    userResource.get(1);
+    expect(userResource.get.isPending()).toBe(true);
+
+    // find
+    expect(userResource.find.isPending()).toBe(false);
+    userResource.find();
+    expect(userResource.find.isPending()).toBe(true);
+
+    // post, add, create
+    expect(userResource.post.isPending()).toBe(false);
+    expect(userResource.add.isPending()).toBe(false);
+    expect(userResource.create.isPending()).toBe(false);
+    userResource.post();
+    expect(userResource.post.isPending()).toBe(true);
+    expect(userResource.add.isPending()).toBe(true);
+    expect(userResource.create.isPending()).toBe(true);
+
+    // patch, update
+    expect(userResource.patch.isPending()).toBe(false);
+    expect(userResource.update.isPending()).toBe(false);
+    userResource.patch(1);
+    expect(userResource.patch.isPending()).toBe(true);
+    expect(userResource.update.isPending()).toBe(true);
+
+    // put, replace
+    expect(userResource.put.isPending()).toBe(false);
+    expect(userResource.replace.isPending()).toBe(false);
+    userResource.put(1);
+    expect(userResource.put.isPending()).toBe(true);
+    expect(userResource.replace.isPending()).toBe(true);
+
+    // delete
+    expect(userResource.delete.isPending()).toBe(false);
+    userResource.delete(1);
+    expect(userResource.delete.isPending()).toBe(true);
+
+    // custom actions
+    expect(userResource.foo.isPending()).toBe(false);
+    userResource.foo();
+    expect(userResource.foo.isPending()).toBe(true);
+    expect(userResource.bar.isPending()).toBe(false);
+    userResource.bar();
+    expect(userResource.bar.isPending()).toBe(true);
+  });
 });
