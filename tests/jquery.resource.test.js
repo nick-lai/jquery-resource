@@ -367,6 +367,11 @@ describe('calls into $.ajax with the correct params', () => {
         get: {
           method: 'GET',
         },
+        foo: {
+          method: 'POST',
+          url: 'https://reqres.in/api/users/foo',
+          useID: true,
+        },
       }
     });
 
@@ -379,6 +384,11 @@ describe('calls into $.ajax with the correct params', () => {
       method: 'GET',
       url: 'https://reqres.in/api/users/export',
     }).toEqual(userResource.export.ajaxSettings);
+
+    expect({
+      method: 'POST',
+      url: 'https://reqres.in/api/users/foo',
+    }).toEqual(userResource.foo.ajaxSettings);
 
     let request = userResource.copy({
       id: 1,
@@ -407,6 +417,34 @@ describe('calls into $.ajax with the correct params', () => {
       url: 'https://reqres.in/api/users/export',
       data: {
         id: 2,
+      }
+    });
+
+    ajaxSpy.mockReset();
+
+    userResource.foo(3, {
+      message: 'foo',
+    });
+
+    expect(ajaxSpy).toBeCalledWith({
+      method: 'POST',
+      url: 'https://reqres.in/api/users/foo/3',
+      data: {
+        message: 'foo',
+      }
+    });
+
+    ajaxSpy.mockReset();
+
+    userResource.foo('', {
+      message: 'empty id',
+    });
+
+    expect(ajaxSpy).toBeCalledWith({
+      method: 'POST',
+      url: 'https://reqres.in/api/users/foo',
+      data: {
+        message: 'empty id',
       }
     });
   });

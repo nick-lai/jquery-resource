@@ -48,10 +48,11 @@
    * @returns {jqXHR} The jQuery XMLHttpRequest (jqXHR) object.
    */
   function ajax (instance, id, data, action, settings) {
-    return action.lastRequest = instance.ajax(deepMerge({
-      url: instance.endpoint + (id ? '/' + id : ''),
+    var ajaxSettings = action.ajaxSettings;
+    return action.lastRequest = instance.ajax(deepMerge(ajaxSettings, {
+      url: (ajaxSettings.url || instance.endpoint) + (id ? '/' + id : ''),
       data: data,
-    }, action.ajaxSettings, settings));
+    }, settings));
   }
 
   function createAction (instance, ajaxSettings, useID) {
@@ -163,7 +164,8 @@
         );
         return true;
       }
-      instance[actionName] = createAction(instance, ajaxSettings);
+      instance[actionName] = createAction(instance, ajaxSettings, ajaxSettings.useID);
+      delete ajaxSettings.useID;
     });
   }
 }));
