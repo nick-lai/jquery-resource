@@ -19,7 +19,7 @@ jquery-resource is available on jsDelivr or unpkg.
 Load jquery-resource from [jsDelivr](https://www.jsdelivr.com/package/npm/jquery-resource).
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/jquery-resource@1.1.2"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-resource@1.2.0"></script>
 ```
 
 #### unpkg
@@ -27,7 +27,7 @@ Load jquery-resource from [jsDelivr](https://www.jsdelivr.com/package/npm/jquery
 Load jquery-resource from [unpkg](https://unpkg.com/jquery-resource/dist/).
 
 ```html
-<script src="https://unpkg.com/jquery-resource@1.1.2"></script>
+<script src="https://unpkg.com/jquery-resource@1.2.0"></script>
 ```
 
 ## Usage
