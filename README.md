@@ -42,6 +42,7 @@ A jQuery plugin that abstracts the process of consuming a REST endpoint.
       - [replace()](#replace)
     - [Custom actions](#custom-actions)
     - [Last request](#last-request)
+      - [isPending()](#ispending)
     - [Ajax settings](#ajax-settings)
       - [Resource's ajax settings](#resources-ajax-settings)
       - [Action's ajax settings](#actions-ajax-settings)
@@ -280,13 +281,29 @@ var userResource = $.resource({
   endpoint: 'https://reqres.in/api/users',
   customActions: {
     // actionName: ajaxSettings
-    copy: {method: 'POST', url: 'https://reqres.in/api/users/copy'},
+    save: {
+      method: 'POST',
+      url: 'https://reqres.in/api/users/save',
+    },
+    notify: {
+      method: 'POST',
+      url: 'https://reqres.in/api/users/notify',
+      // use resource id as an argument to action
+      useID: true,
+    },
   },
 });
 
-// customAction(params, ajaxSettings)
-userResource.copy({
-  id: 1,
+// save(params, ajaxSettings)
+userResource.save({
+  email: 'george.bluth@reqres.in',
+  first_name: 'George',
+  last_name: 'Bluth'
+});
+
+// notify(id, params, ajaxSettings)
+userResource.notify(1, {
+  message: 'some message'
 });
 ```
 
@@ -304,6 +321,19 @@ userResource.get(2);
 userResource.get.lastRequest.done(function () {
   console.log('GET /api/users/2');
 });
+```
+
+#### isPending()
+
+```javascript
+var userResource = $.resource({
+  endpoint: 'https://reqres.in/api/users',
+});
+
+userResource.get(1);
+
+// check if the last request is pending
+console.log(userResource.get.isPending());
 ```
 
 ### Ajax settings
