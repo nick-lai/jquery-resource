@@ -81,7 +81,7 @@
   }
 
   function initActions (instance) {
-    var actions = {
+    $.extend(instance, {
       /**
        * Send an asynchronous HTTP GET (Ajax) request.
        *
@@ -139,9 +139,7 @@
        * @returns {jqXHR} The jQuery XMLHttpRequest (jqXHR) object.
        */
       delete: createAction(instance, { method: 'DELETE' }, true),
-    };
-
-    $.extend(instance, actions);
+    });
   }
 
   function initAliases (instance) {
