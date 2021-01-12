@@ -1,6 +1,6 @@
 {
   "name": "jquery-resource",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "A jQuery plugin that abstracts the process of consuming a REST endpoint.",
   "main": "dist/jquery.resource.js",
   "files": [

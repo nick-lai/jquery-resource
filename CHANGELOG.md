@@ -2,6 +2,12 @@
 
 ## [Unreleased]
 
+## [v1.2.1]
+
+### Code Refactoring
+
+- Optimize `initActions()` method ([c6d4431](https://github.com/nick-lai/jquery-resource/commit/c6d44315383a39d2b262653cd7a523aa14f66005))
+
 ## [v1.2.0]
 
 ### Added
@@ -92,7 +98,8 @@
 
 ## [v0.1.2]
 
-[unreleased]: https://github.com/nick-lai/jquery-resource/compare/v1.2.0...main
+[unreleased]: https://github.com/nick-lai/jquery-resource/compare/v1.2.1...main
+[v1.2.1]: https://github.com/nick-lai/jquery-resource/compare/v1.2.0...v1.2.1
 [v1.2.0]: https://github.com/nick-lai/jquery-resource/compare/v1.1.2...v1.2.0
 [v1.1.2]: https://github.com/nick-lai/jquery-resource/compare/v1.1.1...v1.1.2
 [v1.1.1]: https://github.com/nick-lai/jquery-resource/compare/v1.1.0...v1.1.1
