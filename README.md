@@ -411,4 +411,4 @@ userResource.post({
 
 ## License
 
-[MIT](./LICENSE)
+[MIT](https://github.com/nick-lai/jquery-resource/blob/main/LICENSE)

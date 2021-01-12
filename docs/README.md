@@ -369,4 +369,4 @@ userResource.post({
 
 ## License
 
-[MIT](https://github.com/nick-lai/jquery-resource/blob/master/LICENSE)
+[MIT](https://github.com/nick-lai/jquery-resource/blob/main/LICENSE)

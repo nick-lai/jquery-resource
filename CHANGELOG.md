@@ -92,7 +92,7 @@
 
 ## [v0.1.2]
 
-[unreleased]: https://github.com/nick-lai/jquery-resource/compare/v1.2.0...master
+[unreleased]: https://github.com/nick-lai/jquery-resource/compare/v1.2.0...main
 [v1.2.0]: https://github.com/nick-lai/jquery-resource/compare/v1.1.2...v1.2.0
 [v1.1.2]: https://github.com/nick-lai/jquery-resource/compare/v1.1.1...v1.1.2
 [v1.1.1]: https://github.com/nick-lai/jquery-resource/compare/v1.1.0...v1.1.1
