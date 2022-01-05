@@ -18,7 +18,7 @@
   },
   "homepage": "https://github.com/nick-lai/jquery-resource#readme",
   "devDependencies": {
-    "jest": "27.0.6"
+    "jest": "27.4.7"
   },
   "peerDependencies": {
     "jquery": "^1.9 || ^2.0 || ^3.0"
