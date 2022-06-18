@@ -7,7 +7,7 @@ jquery-resource
 [![LGTM Grade](https://img.shields.io/lgtm/grade/javascript/github/nick-lai/jquery-resource)](https://lgtm.com/projects/g/nick-lai/jquery-resource/context:javascript)
 [![downloads](https://img.shields.io/npm/dt/jquery-resource)](https://www.npmtrends.com/jquery-resource)  
 [![npm](https://img.shields.io/npm/v/jquery-resource)](https://www.npmjs.com/package/jquery-resource)
-[![bundle size](https://img.shields.io/bundlephobia/minzip/jquery-resource)](https://bundlephobia.com/result?p=jquery-resource)
+[![bundle size](https://img.shields.io/bundlephobia/minzip/jquery-resource)](https://bundlephobia.com/package/jquery-resource)
 [![LICENSE](https://badgen.net/github/license/nick-lai/jquery-resource)](https://github.com/nick-lai/jquery-resource/blob/main/LICENSE)
 
 A jQuery plugin that abstracts the process of consuming a REST endpoint.
