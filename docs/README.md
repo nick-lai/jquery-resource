@@ -237,7 +237,7 @@ userResource.replace(1, {
 ```javascript
 var userResource = $.resource({
   endpoint: 'https://reqres.in/api/users',
-  customActions: {
+  actions: {
     // actionName: ajaxSettings
     save: {
       method: 'POST',
@@ -312,8 +312,10 @@ var userResource = $.resource({
 
 userResource.get(1);
 
-// change resource ajax settings
-userResource.ajaxSettings.processData = true;
+// update resource's ajax settings
+$.extend(userResource.ajaxSettings, {
+  processData: true,
+});
 ```
 
 #### Action's ajax settings
@@ -321,10 +323,17 @@ userResource.ajaxSettings.processData = true;
 ```javascript
 var userResource = $.resource({
   endpoint: 'https://reqres.in/api/users',
+  action: {
+    post: {
+      processData: false,
+    },
+  },
 });
 
-// action's ajax settings
-userResource.post.ajaxSettings.processData = false;
+// update action's ajax settings
+$.extend(userResource.post.ajaxSettings, {
+  processData: true,
+});
 
 userResource.post({
   email: 'emma.wong@reqres.in',
