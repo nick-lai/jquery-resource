@@ -270,6 +270,12 @@ describe('calls into $.ajax with the correct params', () => {
         contentType: false,
         processData: false
       },
+      actions: {
+        post: {
+          contentType: true,
+          processData: true,
+        },
+      },
     });
 
     userResource.get.ajaxSettings.contentType = true;
@@ -281,6 +287,22 @@ describe('calls into $.ajax with the correct params', () => {
       url: 'https://reqres.in/api/users/1',
       contentType: true,
       processData: false
+    });
+
+    var data = {
+      email: 'george.bluth@reqres.in',
+      first_name: 'George',
+      last_name: 'Bluth'
+    };
+
+    userResource.post(data);
+
+    expect(ajaxSpy).toBeCalledWith({
+      method: 'POST',
+      url: 'https://reqres.in/api/users',
+      contentType: true,
+      processData: true,
+      data: data
     });
   });
 
@@ -355,6 +377,25 @@ describe('calls into $.ajax with the correct params', () => {
 
     const userResource = $.resource({
       endpoint: 'https://reqres.in/api/users',
+      actions: {
+        get: {
+          method: 'GET',
+          url: 'https://reqres.in/api/users/get',
+        },
+        foo: {
+          method: 'POST',
+          url: 'https://reqres.in/api/users/foo',
+          useID: true,
+        },
+        bar: {
+          method: 'GET',
+          url: 'https://reqres.in/api/users/bar',
+          withID: true,
+        },
+        endpoint: {
+          method: 'GET',
+        },
+      },
       customActions: {
         copy: {
           method: 'POST',
@@ -364,16 +405,23 @@ describe('calls into $.ajax with the correct params', () => {
           method: 'GET',
           url: 'https://reqres.in/api/users/export',
         },
-        get: {
-          method: 'GET',
-        },
-        foo: {
-          method: 'POST',
-          url: 'https://reqres.in/api/users/foo',
-          useID: true,
-        },
       }
     });
+
+    expect({
+      method: 'GET',
+      url: 'https://reqres.in/api/users/get',
+    }).toEqual(userResource.get.ajaxSettings);
+
+    expect({
+      method: 'POST',
+      url: 'https://reqres.in/api/users/foo',
+    }).toEqual(userResource.foo.ajaxSettings);
+
+    expect({
+      method: 'GET',
+      url: 'https://reqres.in/api/users/bar',
+    }).toEqual(userResource.bar.ajaxSettings);
 
     expect({
       method: 'POST',
@@ -384,11 +432,6 @@ describe('calls into $.ajax with the correct params', () => {
       method: 'GET',
       url: 'https://reqres.in/api/users/export',
     }).toEqual(userResource.export.ajaxSettings);
-
-    expect({
-      method: 'POST',
-      url: 'https://reqres.in/api/users/foo',
-    }).toEqual(userResource.foo.ajaxSettings);
 
     let request = userResource.copy({
       id: 1,
@@ -512,5 +555,26 @@ describe('calls into $.ajax with the correct params', () => {
     expect(userResource.bar.isPending()).toBe(false);
     userResource.bar();
     expect(userResource.bar.isPending()).toBe(true);
+  });
+
+  test('disable default actions', () => {
+    const ajaxSpy = jest.spyOn($, 'ajax');
+    ajaxSpy.mockImplementation(() => new XMLHttpRequest());
+
+    const userResource = $.resource({
+      endpoint: 'https://reqres.in/api/users',
+      actions: {
+        find: false,
+        delete: false,
+      },
+    });
+
+    expect(typeof userResource.find).toBe('undefined');
+    expect(typeof userResource.delete).toBe('undefined');
+
+    expect(typeof userResource.get).toBe('function');
+    expect(typeof userResource.post).toBe('function');
+    expect(typeof userResource.patch).toBe('function');
+    expect(typeof userResource.put).toBe('function');
   });
 });

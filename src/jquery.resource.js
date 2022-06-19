@@ -20,6 +20,31 @@
   Resource.DEFAULTS = {
     endpoint: '',
     ajaxSettings: {},
+    actions: {
+      get: {
+        method: 'GET',
+        withID: true,
+      },
+      find: {
+        method: 'GET',
+      },
+      post: {
+        method: 'POST',
+      },
+      patch: {
+        method: 'PATCH',
+        withID: true,
+      },
+      put: {
+        method: 'PUT',
+        withID: true,
+      },
+      delete: {
+        method: 'DELETE',
+        withID: true,
+      },
+    },
+    // deprecated
     customActions: {},
   };
 
@@ -77,68 +102,32 @@
     instance.ajaxSettings = instance.options.ajaxSettings;
     initActions(instance);
     initAliases(instance);
-    initCustomActions(instance);
   }
 
   function initActions (instance) {
-    $.extend(instance, {
-      /**
-       * Send an asynchronous HTTP GET (Ajax) request.
-       *
-       * @param {string} id Resource ID.
-       * @param {object|string|FormData} params Parameters.
-       * @param {object} settings Ajax settings.
-       * @returns {jqXHR} The jQuery XMLHttpRequest (jqXHR) object.
-       */
-      get: createAction(instance, { method: 'GET' }, true),
+    var options = instance.options;
+    var actions = $.extend({}, options.actions, options.customActions);
 
-      /**
-       * Find by params.
-       *
-       * @param {object|string|FormData} params Parameters.
-       * @param {object} settings Ajax settings.
-       * @returns {jqXHR} The jQuery XMLHttpRequest (jqXHR) object.
-       */
-      find: createAction(instance, { method: 'GET' }),
+    $.each(actions, function (actionName, actionSettings) {
+      if (!actionSettings) {
+        return true;
+      }
 
-      /**
-       * Send an asynchronous HTTP POST (Ajax) request.
-       *
-       * @param {object|string|FormData} data A resource.
-       * @param {object} settings Ajax settings.
-       * @returns {jqXHR} The jQuery XMLHttpRequest (jqXHR) object.
-       */
-      post: createAction(instance, { method: 'POST' }),
+      if (actionName in instance) {
+        console.error(
+          '[jquery-resource] The action "%s" conflicts with an existing resource instance property.',
+          actionName
+        );
+        return true;
+      }
 
-      /**
-       * Send an asynchronous HTTP PATCH (Ajax) request.
-       *
-       * @param {string} id Resource ID.
-       * @param {object|string|FormData} data A resource.
-       * @param {object} settings Ajax settings.
-       * @returns {jqXHR} The jQuery XMLHttpRequest (jqXHR) object.
-       */
-      patch: createAction(instance, { method: 'PATCH' }, true),
+      var withID = actionSettings.withID || actionSettings.useID || false;
+      var ajaxSettings = $.extend({}, actionSettings);
 
-      /**
-       * Send an asynchronous HTTP PUT (Ajax) request.
-       *
-       * @param {string} id Resource ID.
-       * @param {object|string|FormData} data A resource.
-       * @param {object} settings Ajax settings.
-       * @returns {jqXHR} The jQuery XMLHttpRequest (jqXHR) object.
-       */
-      put: createAction(instance, { method: 'PUT' }, true),
+      delete ajaxSettings.useID;
+      delete ajaxSettings.withID;
 
-      /**
-       * Send an asynchronous HTTP DELETE (Ajax) request.
-       *
-       * @param {string} id Resource ID.
-       * @param {object|string|FormData} params Parameters.
-       * @param {object} settings Ajax settings.
-       * @returns {jqXHR} The jQuery XMLHttpRequest (jqXHR) object.
-       */
-      delete: createAction(instance, { method: 'DELETE' }, true),
+      instance[actionName] = createAction(instance, ajaxSettings, withID);
     });
   }
 
@@ -148,22 +137,6 @@
       create: instance.post,
       update: instance.patch,
       replace: instance.put,
-    });
-  }
-
-  function initCustomActions (instance) {
-    var customActions = instance.options.customActions;
-
-    $.each(customActions, function (actionName, ajaxSettings) {
-      if (actionName in instance) {
-        console.error(
-          '[jquery-resource] Custom action "%s" conflicts with an existing resource instance property.',
-          actionName
-        );
-        return true;
-      }
-      instance[actionName] = createAction(instance, ajaxSettings, ajaxSettings.useID);
-      delete ajaxSettings.useID;
     });
   }
 }));
