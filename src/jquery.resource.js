@@ -62,6 +62,10 @@
     return !!request && request.readyState !== 4;
   }
 
+  function hasProperty (object, key) {
+    return Object.prototype.hasOwnProperty.call(object, key);
+  }
+
   /**
    * Ajax
    *
@@ -126,6 +130,17 @@
 
       delete ajaxSettings.useID;
       delete ajaxSettings.withID;
+      delete ajaxSettings.withFiles;
+
+      if (actionSettings.withFiles) {
+        if (!hasProperty(ajaxSettings, 'contentType')) {
+          ajaxSettings.contentType = false;
+        }
+
+        if (!hasProperty(ajaxSettings, 'processData')) {
+          ajaxSettings.processData = false;
+        }
+      }
 
       instance[actionName] = createAction(instance, ajaxSettings, withID);
     });

@@ -577,4 +577,84 @@ describe('calls into $.ajax with the correct params', () => {
     expect(typeof userResource.patch).toBe('function');
     expect(typeof userResource.put).toBe('function');
   });
+
+  test('withFiles', () => {
+    const ajaxSpy = jest.spyOn($, 'ajax');
+    const userResource = $.resource({
+      endpoint: 'https://reqres.in/api/users',
+      actions: {
+        post: {
+          withFiles: true,
+        },
+        patch: {
+          withFiles: false,
+        },
+        foo: {
+          method: 'POST',
+          url: 'https://reqres.in/api/users/foo',
+          withFiles: true,
+          processData: true,
+        },
+        bar: {
+          method: 'POST',
+          url: 'https://reqres.in/api/users/bar',
+          withFiles: true,
+          contentType: true,
+          processData: true,
+        },
+      },
+    });
+
+    var data = {
+      email: 'george.bluth@reqres.in',
+      first_name: 'George',
+      last_name: 'Bluth'
+    };
+
+    userResource.post(data);
+
+    expect(ajaxSpy).toBeCalledWith({
+      method: 'POST',
+      url: 'https://reqres.in/api/users',
+      contentType: false,
+      processData: false,
+      data: data
+    });
+
+    userResource.patch(1, data);
+
+    expect(ajaxSpy).toBeCalledWith({
+      method: 'PATCH',
+      url: 'https://reqres.in/api/users/1',
+      data: data
+    });
+
+    userResource.put(1, data);
+
+    expect(ajaxSpy).toBeCalledWith({
+      method: 'PUT',
+      url: 'https://reqres.in/api/users/1',
+      data: data
+    });
+
+    userResource.foo(data);
+
+    expect(ajaxSpy).toBeCalledWith({
+      method: 'POST',
+      url: 'https://reqres.in/api/users/foo',
+      contentType: false,
+      processData: true,
+      data: data
+    });
+
+    userResource.bar(data);
+
+    expect(ajaxSpy).toBeCalledWith({
+      method: 'POST',
+      url: 'https://reqres.in/api/users/bar',
+      contentType: true,
+      processData: true,
+      data: data
+    });
+  });
 });
