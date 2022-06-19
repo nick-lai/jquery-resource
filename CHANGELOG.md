@@ -2,6 +2,13 @@
 
 ## [Unreleased]
 
+## [v1.3.0]
+
+### Added
+
+- Action configuration ([3b7a164](https://github.com/nick-lai/jquery-resource/commit/3b7a1644182727e89cc7bb34644d0ffc1d6b0fdf))
+- Add `withFiles` option in action settings ([50fbddb](https://github.com/nick-lai/jquery-resource/commit/50fbddba3d877e02b73c72fa12cfae79952fe09c))
+
 ## [v1.2.1]
 
 ### Code Refactoring
@@ -98,7 +105,8 @@
 
 ## [v0.1.2]
 
-[unreleased]: https://github.com/nick-lai/jquery-resource/compare/v1.2.1...main
+[unreleased]: https://github.com/nick-lai/jquery-resource/compare/v1.3.0...main
+[v1.3.0]: https://github.com/nick-lai/jquery-resource/compare/v1.2.1...v1.3.0
 [v1.2.1]: https://github.com/nick-lai/jquery-resource/compare/v1.2.0...v1.2.1
 [v1.2.0]: https://github.com/nick-lai/jquery-resource/compare/v1.1.2...v1.2.0
 [v1.1.2]: https://github.com/nick-lai/jquery-resource/compare/v1.1.1...v1.1.2
