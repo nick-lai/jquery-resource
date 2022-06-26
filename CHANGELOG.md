@@ -2,6 +2,12 @@
 
 ## [Unreleased]
 
+## [v1.4.0]
+
+### Added
+
+- Add `aliases` option  ([369070e](https://github.com/nick-lai/jquery-resource/commit/369070eff2c2a0abebfc1834bfc9493c5324b5ce))
+
 ## [v1.3.0]
 
 ### Added
@@ -105,7 +111,8 @@
 
 ## [v0.1.2]
 
-[unreleased]: https://github.com/nick-lai/jquery-resource/compare/v1.3.0...main
+[unreleased]: https://github.com/nick-lai/jquery-resource/compare/v1.4.0...main
+[v1.4.0]: https://github.com/nick-lai/jquery-resource/compare/v1.3.0...v1.4.0
 [v1.3.0]: https://github.com/nick-lai/jquery-resource/compare/v1.2.1...v1.3.0
 [v1.2.1]: https://github.com/nick-lai/jquery-resource/compare/v1.2.0...v1.2.1
 [v1.2.0]: https://github.com/nick-lai/jquery-resource/compare/v1.1.2...v1.2.0
