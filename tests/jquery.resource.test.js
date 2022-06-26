@@ -657,4 +657,46 @@ describe('calls into $.ajax with the correct params', () => {
       data: data
     });
   });
+
+  test('aliases', () => {
+    const userResource = $.resource({
+      endpoint: 'https://reqres.in/api/users',
+      aliases: false,
+    });
+
+    expect(typeof userResource.add).toBe('undefined');
+    expect(typeof userResource.create).toBe('undefined');
+    expect(typeof userResource.update).toBe('undefined');
+    expect(typeof userResource.replace).toBe('undefined');
+
+    const productResource = $.resource({
+      endpoint: 'https://reqres.in/api/products',
+      actions: {
+        copy: {
+          method: 'POST',
+          url: 'https://reqres.in/api/products/copy',
+        },
+      },
+      aliases: {
+        // disable the default "add" and "create" aliases
+        add: false,
+        create: false,
+        // action name "bar" does not exist
+        foo: 'bar',
+        // alias name "post" conflicts with an existing property
+        post: 'delete',
+        remove: 'delete',
+        clone: 'copy',
+      },
+    });
+
+    expect(typeof productResource.add).toBe('undefined');
+    expect(typeof productResource.create).toBe('undefined');
+    expect(typeof productResource.foo).toBe('undefined');
+    expect(productResource.post).not.toBe(productResource.delete);
+    expect(productResource.update).toBe(productResource.patch);
+    expect(productResource.replace).toBe(productResource.put);
+    expect(productResource.remove).toBe(productResource.delete);
+    expect(productResource.clone).toBe(productResource.copy);
+  });
 });

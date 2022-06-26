@@ -46,6 +46,12 @@
     },
     // deprecated
     customActions: {},
+    aliases: {
+      add: 'post',
+      create: 'post',
+      update: 'patch',
+      replace: 'put',
+    },
   };
 
   Resource.prototype.ajax = function (settings) {
@@ -147,11 +153,31 @@
   }
 
   function initAliases (instance) {
-    $.extend(instance, {
-      add: instance.post,
-      create: instance.post,
-      update: instance.patch,
-      replace: instance.put,
+    var options = instance.options;
+
+    if (!options.aliases) {
+      return;
+    }
+
+    $.each(options.aliases, function (aliasName, actionName) {
+      if (!actionName) {
+        return true;
+      }
+
+      if (aliasName in instance) {
+        console.error(
+          '[jquery-resource] The alias name "%s" conflicts with an existing resource instance property.',
+          aliasName
+        );
+        return true;
+      }
+
+      if (!(actionName in instance)) {
+        console.warn('[jquery-resource] The action name "%s" for the alias does not exist.', actionName);
+        return true;
+      }
+
+      instance[aliasName] = instance[actionName];
     });
   }
 }));
