@@ -19,7 +19,7 @@ jobs:
     - run: npm install jquery --no-save
     - run: npm test
     - name: Upload Coverage report to CodeCov
-      uses: codecov/codecov-action@v3
+      uses: codecov/codecov-action@v4
       with:
         flags: unittest
         directory: ./coverage
